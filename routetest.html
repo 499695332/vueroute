@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/save.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
+    <script src="js/navtest.js"></script>
+    <script src="js/componenttest.js"></script>
+    <link rel="stylesheet" href="css/routetest.css">
+    <link href="css/mui.min.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="root">
+    <transition >
+    <router-view ></router-view>
+    </transition>
+</div>
+</body>
+</html>
+<script>
+    const router = new VueRouter({
+        linkActiveClass:"active",
+//        scrollBehavior:function(to,from,pos){
+//            if(pos){
+//                return pos.y;   //记录上一个页面的离开位置
+//            }
+//        },
+//        mode:"history",
+        routes:[
+            { path: '/', component:index },
+            { path: '/jianjie', component:jianjie,
+              children:[
+                  { path: '', component:list },
+                  { path: 'list/:id', component:infocon},
+              ]
+            },
+            { path: '/shuoming', component:shuoming,
+                children:[
+                    { path: '', components:{'left':left,'right':right }}
+                ]
+            },
+            {
+                path:"/login",
+                component:Login
+            },
+            { path: '*', redirect:"/"}
+        ]
+    })
+    Vue.use(save);
+    new Vue({
+        el:"#root",
+        router
+    })
+</script>

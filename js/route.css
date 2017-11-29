@@ -1,0 +1,29 @@
+*{
+    padding:0;
+    margin:0;
+    list-style: none;
+    text-decoration: none;
+}
+.custom-nav{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #F3F3F3;
+    border-bottom: 1px solid #ccc;
+}
+li{
+    height: 100%;
+    padding:0 20px;
+    line-height: 50px;
+}
+.center{
+    margin:0 auto;
+}
+.aa{
+    background: #fff;
+}
+div{
+    text-align: center;
+}

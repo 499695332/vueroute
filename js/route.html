@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="nav.js"></script>
+    <script src="component.js"></script>
+    <link rel="stylesheet" href="route.css">
+</head>
+<body>
+<div id="root">
+    <custom-nav class="center"></custom-nav>
+    <transition>
+    <router-view ></router-view>
+    </transition>
+</div>
+
+</body>
+</html>
+<script>
+    const router = new VueRouter({
+        linkActiveClass:"aa",
+        scrollBehavior:function(to,from,pos){
+            if(pos){
+                return pos.y;   //记录上一个页面的离开位置
+            }
+        },
+        mode:"history",
+        routes:[
+            { path: '/', component:index },
+            { path: '/js', component: js },
+            { path: '/css', component: css },
+            { path: '/php', component: php ,children:[
+                { path:'',component:think},
+                { path:'/mvc',component:mvc},
+                { path:'/smarty',component:smarty}
+            ] },
+            { path: '*', redirect:"/"}
+        ]
+    })
+    new Vue({
+        el:"#root",
+        router,
+    })
+</script>
